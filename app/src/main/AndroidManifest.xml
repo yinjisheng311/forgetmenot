@@ -27,7 +27,10 @@
         <activity android:name=".TakeSuccess" />
         <activity android:name=".TakeFailure" />
         <activity android:name=".SpeechPutActivity" />
-        <activity android:name=".SpeechPutIsIt"></activity>
+        <activity android:name=".SpeechPutIsIt" />
+        <activity android:name=".YesActivity" />
+        <activity android:name=".NoActivity" />
+        <activity android:name=".FinallyYesActivity"></activity>
     </application>
 
 </manifest>

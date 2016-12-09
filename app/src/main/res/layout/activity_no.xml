@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_no"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/colorWhite"
+    tools:context="com.example.g.forgetmenot.NoActivity">
+
+    <Button
+        android:text="Enter"
+        android:textColor="@color/colorWhite"
+        android:textSize="50dp"
+        android:background="@color/colorGreen"
+        android:layout_width="400dp"
+        android:layout_height="80dp"
+        android:id="@+id/correctedButtonET"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:onClick="FinallyYes"/>
+
+    <EditText
+        android:textSize="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="Enter Item Name"
+        android:gravity="center"
+        android:ems="10"
+        android:id="@+id/correctedItemET"
+        android:layout_marginBottom="124dp"
+        android:layout_above="@+id/correctedButtonET"
+        android:layout_centerHorizontal="true" />
+</RelativeLayout>

@@ -77,24 +77,19 @@ public class SpeechPutActivity extends AppCompatActivity {
                     ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
                     txtSpeechInput.setText(result.get(0));
 
-                    RequestParams item = new RequestParams();
-                    item.put("item", result.get(0).replace(" ", "+"));
-                    item.put("bin", 0);
-                    postNewObject(item, result.get(0).replace(" ", "+"), 0);
+
 
                     Intent intent = new Intent(this, SpeechPutIsIt.class);
                     intent.putStringArrayListExtra("result", result);
                     startActivity(intent);
+
+
                 }
                 break;
             }
         }
     }
 
-    public void addToServer(View view) {
-        Intent intent = new Intent(this, TakeActivity.class);
-        startActivity(intent);
-    }
 
     /**
      * @Override public boolean onCreateOptionsMenu(Menu menu) {
@@ -104,33 +99,5 @@ public class SpeechPutActivity extends AppCompatActivity {
      * }
      **/
 
-    public void postNewObject(RequestParams item2, String item, int bin) {
-        SpeechActivityClient.post("api/item/add?item=" + item + "&bin=" + bin, item2, new JsonHttpResponseHandler() {
-            @Override
-            public void onStart() {
 
-            }
-
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONObject existingObject) {
-                try {
-                    //JSONObject newObject = existingObject.getJSONObject(0);
-                    System.out.println("Works");
-                } catch (Exception e) {
-                    System.out.println("no");
-                }
-
-            }
-
-            public void onRetry(int retryNo) {
-
-            }
-
-            public void onFailure(int x, Header[] y, String z, Throwable l) {
-                System.out.println(z);
-            }
-
-        });
-
-    }
 }

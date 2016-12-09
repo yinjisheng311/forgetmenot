@@ -9,9 +9,17 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import com.loopj.android.http.*;
+import cz.msebera.android.httpclient.Header;
+
 public class SpeechPutIsIt extends AppCompatActivity {
     private TextView txtSpeechInput;
     Typeface tf1;
+    String sentObject;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,15 +29,18 @@ public class SpeechPutIsIt extends AppCompatActivity {
         txtSpeechInput.setTypeface(tf1);
 
         Intent i = getIntent();
-        ArrayList<String> list = i.getStringArrayListExtra("result");
+        ArrayList<String>list = i.getStringArrayListExtra("result");
         txtSpeechInput.setText("Is the item '" + list.get(0) + "'?");
+        sentObject = list.get(0);
+
     }
     public void YesItem(View view){
-        Intent intent = new Intent(this, SpeechPutIsIt.class);
+        Intent intent = new Intent(this, YesActivity.class);
+        intent.putExtra("object", sentObject);
         startActivity(intent);
     }
     public void NoItem(View view){
-        Intent intent = new Intent(this, SpeechPutIsIt.class);
+        Intent intent = new Intent(this, NoActivity.class);
         startActivity(intent);
     }
 
