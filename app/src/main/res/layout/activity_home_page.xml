@@ -14,45 +14,44 @@
     tools:context="com.example.g.forgetmenot.HomePage">
 
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="500dp"
+        app:srcCompat="@drawable/whiteshelf"
+        android:id="@+id/imageView4"
+        android:layout_marginTop="69dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="100dp"/>
+
     <Button
         android:text="Take"
-        android:textSize="20dp"
+        android:textSize="40dp"
         android:textColor="@color/colorWhite"
-        android:background="@drawable/grey_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/button3"
-        style="@style/Widget.AppCompat.Button.Borderless.Colored"
+        android:background="@drawable/special_button"
+        android:layout_width="400dp"
+        android:layout_height="80dp"
+        android:gravity="center"
+        android:id="@+id/takeButton"
         android:onClick="TakeIntent"
-        android:layout_marginBottom="59dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/putButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="73dp" />
 
     <Button
 
         android:text="Put"
-        android:textSize="20dp"
+        android:textSize="40dp"
         android:textColor="@color/colorWhite"
-        android:background="@drawable/grey_button"
-        android:layout_width="400dp"
-        android:layout_height="80dp"
-        android:id="@+id/button2"
-        android:onClick="PutIntent"
-        android:layout_marginBottom="40dp"
-        android:layout_above="@+id/button3"
-        android:layout_alignLeft="@+id/button3"
-        android:layout_alignStart="@+id/button3" />
-
-    <Button
-        android:text="Login"
         android:background="@drawable/special_button"
-        android:textSize="30dp"
-        android:textColor="@color/colorWhite"
         android:layout_width="400dp"
         android:layout_height="80dp"
-        android:id="@+id/button"
-        android:onClick="LoginIntent"
-        android:layout_below="@+id/passwordEditText"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="70dp" />
+        android:gravity="center"
+        android:id="@+id/putButton"
+        android:onClick="PutIntent"
+        android:layout_below="@+id/imageView4"
+        android:layout_alignLeft="@+id/takeButton"
+        android:layout_alignStart="@+id/takeButton"
+        android:layout_marginTop="35dp" />
+
+
 </RelativeLayout>

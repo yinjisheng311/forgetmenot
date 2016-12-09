@@ -1,5 +1,6 @@
 package com.example.g.forgetmenot;
 
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import java.util.ArrayList;
@@ -13,8 +14,16 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import com.loopj.android.http.*;
+import cz.msebera.android.httpclient.Header;
+
 public class SpeechPutActivity extends AppCompatActivity {
     //private TextView txtSpeechInput;
+    TextView txtSpeechInput;
+    Typeface tf1;
     private ImageButton btnSpeak;
     private final int REQ_CODE_SPEECH_INPUT = 100;
 
@@ -23,8 +32,13 @@ public class SpeechPutActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_speech_put);
 
-        //txtSpeechInput = (TextView) findViewById(R.id.txtSpeechInput);
+
+        txtSpeechInput = (TextView) findViewById(R.id.putText);
         btnSpeak = (ImageButton) findViewById(R.id.btnSpeak);
+
+        tf1 = Typeface.createFromAsset(getAssets(), "fonts/JosefinSans-Regular.ttf");
+
+        txtSpeechInput.setTypeface(tf1);
 
         btnSpeak.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -33,9 +47,10 @@ public class SpeechPutActivity extends AppCompatActivity {
             }
         });
     }
+
     /**
      * Showing google speech input dialog
-     * */
+     */
     private void promptSpeechInput() {
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
@@ -44,12 +59,13 @@ public class SpeechPutActivity extends AppCompatActivity {
         try {
             startActivityForResult(intent, REQ_CODE_SPEECH_INPUT);
         } catch (ActivityNotFoundException a) {
-            Toast.makeText(getApplicationContext(), getString(R.string.speech_not_supported),Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), getString(R.string.speech_not_supported), Toast.LENGTH_SHORT).show();
         }
     }
+
     /**
      * Receiving speech input
-     * */
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -59,10 +75,15 @@ public class SpeechPutActivity extends AppCompatActivity {
                 if (resultCode == RESULT_OK && null != data) {
 
                     ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-                    //txtSpeechInput.setText(result.get(0));
-                    Intent intent = new Intent(this,SpeechPutIsIt.class);
-                    intent.putExtra("result", result);
+                    txtSpeechInput.setText(result.get(0));
 
+                    RequestParams item = new RequestParams();
+                    item.put("item", result.get(0).replace(" ", "+"));
+                    item.put("bin", 0);
+                    postNewObject(item, result.get(0).replace(" ", "+"), 0);
+
+                    Intent intent = new Intent(this, SpeechPutIsIt.class);
+                    intent.putStringArrayListExtra("result", result);
                     startActivity(intent);
                 }
                 break;
@@ -70,7 +91,46 @@ public class SpeechPutActivity extends AppCompatActivity {
         }
     }
 
-    public void whereIsIt(View view){
+    public void addToServer(View view) {
+        Intent intent = new Intent(this, TakeActivity.class);
+        startActivity(intent);
+    }
+
+    /**
+     * @Override public boolean onCreateOptionsMenu(Menu menu) {
+     * // Inflate the menu; this adds items to the action bar if it is present.
+     * getMenuInflater().inflate(R.menu.main, menu);
+     * return true;
+     * }
+     **/
+
+    public void postNewObject(RequestParams item2, String item, int bin) {
+        SpeechActivityClient.post("api/item/add?item=" + item + "&bin=" + bin, item2, new JsonHttpResponseHandler() {
+            @Override
+            public void onStart() {
+
+            }
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject existingObject) {
+                try {
+                    //JSONObject newObject = existingObject.getJSONObject(0);
+                    System.out.println("Works");
+                } catch (Exception e) {
+                    System.out.println("no");
+                }
+
+            }
+
+            public void onRetry(int retryNo) {
+
+            }
+
+            public void onFailure(int x, Header[] y, String z, Throwable l) {
+                System.out.println(z);
+            }
+
+        });
 
     }
 }

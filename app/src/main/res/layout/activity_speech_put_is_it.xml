@@ -11,26 +11,46 @@
     tools:context="com.example.g.forgetmenot.SpeechPutIsIt">
 
     <TextView
-        android:text="IS IT"
+        android:text="..."
+        android:textSize="100dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/txtSpeechInput"
+        android:layout_marginTop="295dp"
         android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="297dp"
-        android:layout_marginStart="297dp"
-        android:layout_marginTop="433dp"
-        android:id="@+id/textView4" />
+        android:layout_centerHorizontal="true" />
 
-    <TextView
-        android:text=" "
-        android:layout_width="wrap_content"
+    <Button
+        android:text="Yes"
+        android:textSize="70dp"
+        android:background="@color/colorGreen"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="116dp"
+        android:id="@+id/button3"
+        android:onClick="YesItem"
+        android:layout_marginLeft="63dp"
+        android:layout_marginStart="63dp"
         android:layout_below="@+id/txtSpeechInput"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="284dp"
-        android:layout_marginStart="284dp"
-        android:layout_marginTop="30dp"
-        android:id="@+id/textView5" />
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="No"
+        android:textSize="70dp"
+        android:background="@color/colorRed"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/button4"
+        android:onClick="NoItem"
+        android:layout_marginLeft="13dp"
+        android:layout_marginStart="13dp"
+        android:layout_alignBaseline="@+id/button3"
+        android:layout_alignBottom="@+id/button3"
+        android:layout_toRightOf="@+id/txtSpeechInput"
+        android:layout_toEndOf="@+id/txtSpeechInput" />
+
+
+    />
+
 </RelativeLayout>
