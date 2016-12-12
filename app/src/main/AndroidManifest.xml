@@ -54,10 +54,10 @@
             android:screenOrientation="portrait" />
         <activity android:name=".InventoryList"
             android:screenOrientation="portrait" />
-        <activity android:name=".TakenOutSuccess">
+        <activity android:name=".TakenOutSuccess"
             android:screenOrientation="portrait" />
 
-        </activity>
+
     </application>
 
 </manifest>

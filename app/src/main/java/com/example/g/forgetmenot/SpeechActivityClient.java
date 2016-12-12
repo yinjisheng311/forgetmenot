@@ -25,5 +25,8 @@ public class SpeechActivityClient {
     public static void delete(String url, RequestParams params, AsyncHttpResponseHandler responseHandler){
         client.post(BASE_URL+url, params, responseHandler);
     }
+    public static void checkBox(String url, RequestParams params, AsyncHttpResponseHandler responseHandler){
+        client.get(BASE_URL+url,params, responseHandler);
+    }
 
 }
