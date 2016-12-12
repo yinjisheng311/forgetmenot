@@ -22,11 +22,12 @@
         android:layout_centerHorizontal="true" />
 
     <Button
+        android:textColor="@color/colorWhite"
         android:text="Yes"
-        android:textSize="70dp"
-        android:background="@color/colorGreen"
+        android:textSize="40dp"
+        android:background="@drawable/green_button"
         android:layout_width="250dp"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
         android:layout_marginTop="116dp"
         android:id="@+id/button3"
         android:onClick="YesItem"
@@ -37,11 +38,12 @@
         android:layout_alignParentStart="true" />
 
     <Button
+        android:textColor="@color/colorWhite"
         android:text="No"
-        android:textSize="70dp"
-        android:background="@color/colorRed"
+        android:textSize="40dp"
+        android:background="@drawable/red_button"
         android:layout_width="250dp"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
         android:id="@+id/button4"
         android:onClick="NoItem"
         android:layout_marginTop="116dp"

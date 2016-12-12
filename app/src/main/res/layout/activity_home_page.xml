@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_home_page"
 
+
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
@@ -11,17 +13,19 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="@drawable/homebackground"
-    tools:context="com.example.g.forgetmenot.HomePage">
+    tools:context="com.example.g.forgetmenot.HomePage"
 
+    >
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="500dp"
-        app:srcCompat="@drawable/whiteshelf"
-        android:id="@+id/imageView4"
-        android:layout_marginTop="69dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginBottom="100dp"/>
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorLogoBlue"
+        app:titleTextColor="@color/colorWhite"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
     <Button
         android:text="Take"
@@ -48,10 +52,36 @@
         android:gravity="center"
         android:id="@+id/putButton"
         android:onClick="PutIntent"
-        android:layout_below="@+id/imageView4"
+        android:layout_below="@+id/whiteshelfIV"
         android:layout_alignLeft="@+id/takeButton"
         android:layout_alignStart="@+id/takeButton"
-        android:layout_marginTop="35dp" />
+        android:layout_marginTop="73dp" />
+
+    <Button
+        android:text="Inventory"
+        android:textSize="40dp"
+        android:textColor="@color/colorWhite"
+        android:background="@drawable/special_button"
+        android:layout_width="400dp"
+        android:layout_height="80dp"
+        android:gravity="center"
+        android:id="@+id/itemB"
+        android:onClick="TakeIntent"
+        android:layout_below="@+id/takeButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="73dp"
+        android:layout_marginBottom="30dp"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="500dp"
+        app:srcCompat="@drawable/whiteshelf"
+        android:id="@+id/whiteshelfIV"
+        android:layout_marginTop="100dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 
 </RelativeLayout>
+

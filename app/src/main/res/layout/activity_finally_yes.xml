@@ -2,21 +2,36 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_finally_yes"
+    android:id="@+id/activity_yes"
+    android:background="@color/colorWhite"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:background="@color/colorWhite"
-
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.g.forgetmenot.FinallyYesActivity">
+    tools:context="com.example.g.forgetmenot.YesActivity">
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/ui4"
+        android:id="@+id/imageView8"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="200dp"/>
+
+    <Button
+        android:textColor="@color/colorWhite"
+        android:textSize="40dp"
+        android:text="HOME"
+        android:background="@drawable/green_button"
+        android:layout_width="300dp"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:id="@+id/imageView8" />
+        android:layout_marginBottom="93dp"
+        android:id="@+id/goHomeButton2"
+        android:onClick="GoHomeFinallyYes"/>
 </RelativeLayout>

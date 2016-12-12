@@ -1,8 +1,11 @@
 package com.example.g.forgetmenot;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -15,10 +18,18 @@ import cz.msebera.android.httpclient.Header;
 
 public class YesActivity extends AppCompatActivity {
 
+    Button goHomeBtn;
+    Typeface tf1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_yes);
+
+        goHomeBtn = (Button) findViewById(R.id.goHomeButton);
+        tf1 = Typeface.createFromAsset(getAssets(), "fonts/JosefinSans-Regular.ttf");
+        goHomeBtn.setTypeface(tf1);
+
 
         Intent intent = getIntent();
         String object = intent.getExtras().getString("object");
@@ -58,5 +69,9 @@ public class YesActivity extends AppCompatActivity {
 
         });
 
+    }
+    public void GoHomeYes(View view){
+        Intent goHomeYes = new Intent(this,HomePage.class);
+        startActivity(goHomeYes);
     }
 }

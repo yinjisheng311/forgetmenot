@@ -14,12 +14,15 @@ public class SpeechActivityClient {
 
     private static AsyncHttpClient client = new AsyncHttpClient();
 
-    public static void fetch(String url, RequestParams params, AsyncHttpResponseHandler responseHandler){
+    public static void get(String url, RequestParams params, AsyncHttpResponseHandler responseHandler){
         client.get(BASE_URL+url,params, responseHandler);
     }
 
     public static void post(String url, RequestParams params, AsyncHttpResponseHandler responseHandler){
         client.addHeader("Content-Type","application/json");
+        client.post(BASE_URL+url, params, responseHandler);
+    }
+    public static void delete(String url, RequestParams params, AsyncHttpResponseHandler responseHandler){
         client.post(BASE_URL+url, params, responseHandler);
     }
 

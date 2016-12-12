@@ -1,5 +1,6 @@
 package com.example.g.forgetmenot;
 
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import java.util.ArrayList;
@@ -13,6 +14,13 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import com.loopj.android.http.*;
+import cz.msebera.android.httpclient.Header;
+
 
 
 public class SpeechTakeActivity extends AppCompatActivity {
@@ -20,13 +28,24 @@ public class SpeechTakeActivity extends AppCompatActivity {
     private ImageButton btnSpeak;
     private final int REQ_CODE_SPEECH_INPUT = 100;
 
+    private ArrayList<String> result;
+    private static final String TAG_OBJECT = "item";
+    JSONArray user = null;
+    public String theItem;
+    Typeface tf1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_speech);
+        setContentView(R.layout.activity_take);
 
-        txtSpeechInput = (TextView) findViewById(R.id.txtSpeechInput);
+        txtSpeechInput = (TextView) findViewById(R.id.takeText);
         btnSpeak = (ImageButton) findViewById(R.id.btnSpeak);
+
+        tf1 = Typeface.createFromAsset(getAssets(), "fonts/JosefinSans-Regular.ttf");
+
+        txtSpeechInput.setTypeface(tf1);
+
         // hide the action bar
 
         //getActionBar().hide();
@@ -63,18 +82,26 @@ public class SpeechTakeActivity extends AppCompatActivity {
             case REQ_CODE_SPEECH_INPUT: {
                 if (resultCode == RESULT_OK && null != data) {
 
-                    ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-                    txtSpeechInput.setText(result.get(0));
+                    result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+                    System.out.println("justprintingarray" +result.get(0));
+
+                    /*
+
+                    Intent changeItem = new Intent(this, TakeSuccess.class);
+                    theItem = result.get(0);
+                    changeItem.putExtra("item", theItem);
+                    */
+
+                    RequestParams item = new RequestParams();
+                    item.put("item", result.get(0).replace(" ", "+"));
+                    item.put("bin", 0);
+                    fetchObject(item, result.get(0).replace(" ", "+"), 0);
                 }
                 break;
             }
         }
     }
 
-    public void whereIsIt(View view){
-        Intent intent = new Intent(SpeechTakeActivity.this, TakeFailure.class);
-        startActivity(intent);
-    }
 
     /**@Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -82,4 +109,52 @@ public class SpeechTakeActivity extends AppCompatActivity {
     getMenuInflater().inflate(R.menu.main, menu);
     return true;
     } **/
+
+    public void fetchObject(RequestParams item2, String item, int bin) {
+        SpeechActivityClient.get("api/item/check?item=" + item, item2, new JsonHttpResponseHandler() {
+            @Override
+            public void onStart() {
+
+            }
+            public void onSuccess(int statusCode, Header[] headers, JSONArray existingArray) {
+                try{
+                    JSONObject newObject = existingArray.getJSONObject(0);
+                    System.out.println(newObject);
+
+                    Intent intent = new Intent(SpeechTakeActivity.this, TakeSuccess.class);
+                    startActivity(intent);
+
+                }catch (Exception e){
+                    System.out.println("not in server");
+                    Intent notHere = new Intent(SpeechTakeActivity.this, TakeFailure.class);
+                    startActivity(notHere);
+                }
+            }
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject existingObject) {
+                try {
+
+                    JSONObject newObject = existingObject.getJSONObject(result.get(0));
+                    System.out.println(newObject);
+                    System.out.println("Works");
+                } catch (Exception e) {
+                    System.out.println("no");
+                    Intent notHere = new Intent(SpeechTakeActivity.this, TakeFailure.class);
+                    startActivity(notHere);
+                }
+
+            }
+
+            public void onRetry(int retryNo) {
+
+            }
+
+            public void onFailure(int x, Header[] y, String z, Throwable l) {
+                System.out.println(z);
+            }
+
+        });
+
+    }
 }

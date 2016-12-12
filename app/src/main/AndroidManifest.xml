@@ -13,24 +13,51 @@
         android:largeHeap="true"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Login">
+        <activity
+            android:name=".Login"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".HomePage" />
-        <activity android:name=".MainActivity" />
-        <activity android:name=".SpeechTakeActivity" />
-        <activity android:name=".TakeActivity" />
-        <activity android:name=".TakeSuccess" />
-        <activity android:name=".TakeFailure" />
-        <activity android:name=".SpeechPutActivity" />
-        <activity android:name=".SpeechPutIsIt" />
-        <activity android:name=".YesActivity" />
-        <activity android:name=".NoActivity" />
-        <activity android:name=".FinallyYesActivity"></activity>
+        <activity
+            android:name=".HomePage"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SpeechTakeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".TakeSuccess"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".TakeFailure"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SpeechPutActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SpeechPutIsIt"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".YesActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".NoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".FinallyYesActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".InventoryList"
+            android:screenOrientation="portrait" />
+        <activity android:name=".TakenOutSuccess">
+            android:screenOrientation="portrait" />
+
+        </activity>
     </application>
 
 </manifest>
