@@ -61,6 +61,7 @@ public class TakeSuccess extends AppCompatActivity {
         } else {
             takeOutButton.setClickable(true);
             Toast.makeText(getApplicationContext(), "Clear to proceed", Toast.LENGTH_LONG).show();
+            stopRepeatingTask();
         }
         // if the box is opened
         // takeOutButton.setClickable(true);
