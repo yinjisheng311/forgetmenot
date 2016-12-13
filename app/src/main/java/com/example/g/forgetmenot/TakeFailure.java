@@ -33,6 +33,10 @@ public class TakeFailure extends AppCompatActivity {
     Typeface tf1;
     ArrayList<String> arrays = new ArrayList<>();
 
+    public String bins;
+
+    public String input;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -115,13 +119,13 @@ public class TakeFailure extends AppCompatActivity {
 
     }
     public void goToTakeSuccess(View view){
-        String input = autoComplete.getText().toString();
+        input = autoComplete.getText().toString();
         System.out.println(input);
 
-        checkInput(input);
         if (checkInput(input)){
-            Intent goToTakeSuccessIntent = new Intent(this, TakeSuccess.class);
-            startActivity(goToTakeSuccessIntent);
+            RequestParams item = new RequestParams();
+            item.put("item",input);
+            fetchObject(item,input.replace(" ","+"),0);
         }
         else {
             Toast.makeText(getApplicationContext(), "Please try again", Toast.LENGTH_LONG).show();
@@ -136,4 +140,66 @@ public class TakeFailure extends AppCompatActivity {
         }
         return false;
     }
+
+
+    public void fetchObject(RequestParams item2, String item, int bin) {
+        SpeechActivityClient.get("api/item/check?item=" + item, item2, new JsonHttpResponseHandler() {
+            @Override
+            public void onStart() {
+
+            }
+            public void onSuccess(int statusCode, Header[] headers, JSONArray existingArray) {
+                try{
+                    JSONObject newObject = existingArray.getJSONObject(0);
+                    bins = newObject.getString("bin");
+                    System.out.println(newObject);
+
+                    Intent intent = new Intent(TakeFailure.this, TakeSuccess.class);
+                    //System.out.println(input);
+                    intent.putExtra("object",input);
+                    intent.putExtra("bins", bins);
+                    startActivity(intent);
+
+                }catch (Exception e){
+                    System.out.println("not in server");
+                    Intent notHere = new Intent(TakeFailure.this, TakeFailure.class);
+                    startActivity(notHere);
+                }
+            }
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject existingObject) {
+                try {
+
+                    JSONObject newObject = existingObject.getJSONObject(input);
+                    bins = newObject.getString("bin");
+                    System.out.println("Works");
+
+                    Intent intent = new Intent(TakeFailure.this, TakeSuccess.class);
+                    //System.out.println(input);
+                    intent.putExtra("object",input);
+                    intent.putExtra("bins", bins);
+                    startActivity(intent);
+                } catch (Exception e) {
+                    System.out.println("no" + input);
+                    Intent notHere = new Intent(TakeFailure.this, TakeFailure.class);
+                    startActivity(notHere);
+                }
+
+            }
+
+            public void onRetry(int retryNo) {
+
+            }
+
+            public void onFailure(int x, Header[] y, String z, Throwable l) {
+                System.out.println(z);
+            }
+
+        });
+
+    }
+
+
 }
+

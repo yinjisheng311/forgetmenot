@@ -12,7 +12,9 @@ import com.loopj.android.http.RequestParams;
 
 import org.json.JSONObject;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -34,6 +36,8 @@ public class YesActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String object = intent.getExtras().getString("object");
         System.out.println(object);
+
+
 
         RequestParams item = new RequestParams();
         item.put("item", object.replace(" ", "+"));

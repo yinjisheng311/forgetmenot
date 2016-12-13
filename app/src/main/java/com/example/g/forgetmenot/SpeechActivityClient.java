@@ -27,6 +27,11 @@ public class SpeechActivityClient {
     }
     public static void checkBox(String url, RequestParams params, AsyncHttpResponseHandler responseHandler){
         client.get(BASE_URL+url,params, responseHandler);
+    }public static void led(String url, RequestParams params, AsyncHttpResponseHandler responseHandler){
+        client.post(BASE_URL+url, params, responseHandler);
+    }
+    public static void checkWeight(String url, RequestParams params, AsyncHttpResponseHandler responseHandler){
+        client.get(BASE_URL+url, params, responseHandler);
     }
 
 }

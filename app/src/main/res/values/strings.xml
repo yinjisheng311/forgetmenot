@@ -30,4 +30,15 @@
         <item> Botanic Gardens</item>
         <item> Sentosa</item>
     </string-array>
+
+    <string-array name="item_names">
+    <item>Plane</item>
+    <item>Cloud</item>
+    <item>Flower</item>
+    </string-array>
+    <string-array name="times">
+    <item>10h</item>
+    <item>20h</item>
+    <item>30h</item>
+    </string-array>
 </resources>

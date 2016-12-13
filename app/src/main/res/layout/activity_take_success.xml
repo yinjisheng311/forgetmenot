@@ -24,7 +24,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="93dp"
         android:id="@+id/takeOutButton"
-        android:onClick="takeOutItem"/>
+        android:onClick="takeItem"/>
 
     <TextView
         android:text="HERE IT IS!"
@@ -39,27 +39,27 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="150dp"
-        app:srcCompat="@drawable/drawerred"
+        app:srcCompat="@drawable/drawer2red"
         android:layout_marginTop="20dp"
-        android:id="@+id/imageView4"
-        android:layout_below="@+id/imageView"
+        android:id="@+id/drawerView2"
+        android:layout_below="@+id/drawerView1"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="150dp"
-        app:srcCompat="@drawable/drawerred"
-        android:layout_below="@+id/imageView4"
+        app:srcCompat="@drawable/drawer3red"
+        android:layout_below="@+id/drawerView2"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:id="@+id/imageView9" />
+        android:id="@+id/drawerView3" />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="150dp"
-        app:srcCompat="@drawable/drawer"
-        android:id="@+id/imageView"
+        app:srcCompat="@drawable/drawer1red"
+        android:id="@+id/drawerView1"
         android:layout_marginTop="112dp"
         android:layout_below="@+id/textView"
         android:layout_alignParentLeft="true"

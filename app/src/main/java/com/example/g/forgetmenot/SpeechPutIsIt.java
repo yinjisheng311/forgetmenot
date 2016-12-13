@@ -1,13 +1,17 @@
 package com.example.g.forgetmenot;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 
 
 import org.json.JSONArray;
@@ -34,9 +38,14 @@ public class SpeechPutIsIt extends AppCompatActivity {
         sentObject = list.get(0);
 
     }
+
+
+
+
     public void YesItem(View view){
         Intent intent = new Intent(this, YesActivity.class);
         intent.putExtra("object", sentObject);
+
         startActivity(intent);
     }
     public void NoItem(View view){

@@ -66,7 +66,7 @@
         android:layout_height="80dp"
         android:gravity="center"
         android:id="@+id/itemB"
-        android:onClick="TakeIntent"
+        android:onClick="goToList"
         android:layout_below="@+id/takeButton"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="73dp"
@@ -81,6 +81,8 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+
 
 
 </RelativeLayout>

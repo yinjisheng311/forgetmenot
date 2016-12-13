@@ -1,6 +1,7 @@
 package com.example.g.forgetmenot;
 
 import android.graphics.Typeface;
+import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ import android.content.Intent;
 import android.speech.RecognizerIntent;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +36,8 @@ public class SpeechTakeActivity extends AppCompatActivity {
     public String theItem;
     Typeface tf1;
 
+    public String bins;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,9 +46,13 @@ public class SpeechTakeActivity extends AppCompatActivity {
         txtSpeechInput = (TextView) findViewById(R.id.takeText);
         btnSpeak = (ImageButton) findViewById(R.id.btnSpeak);
 
+
         tf1 = Typeface.createFromAsset(getAssets(), "fonts/JosefinSans-Regular.ttf");
 
         txtSpeechInput.setTypeface(tf1);
+
+
+
 
         // hide the action bar
 
@@ -85,12 +93,7 @@ public class SpeechTakeActivity extends AppCompatActivity {
                     result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
                     System.out.println("justprintingarray" +result.get(0));
 
-                    /*
-
-                    Intent changeItem = new Intent(this, TakeSuccess.class);
                     theItem = result.get(0);
-                    changeItem.putExtra("item", theItem);
-                    */
 
                     RequestParams item = new RequestParams();
                     item.put("item", result.get(0).replace(" ", "+"));
@@ -119,9 +122,13 @@ public class SpeechTakeActivity extends AppCompatActivity {
             public void onSuccess(int statusCode, Header[] headers, JSONArray existingArray) {
                 try{
                     JSONObject newObject = existingArray.getJSONObject(0);
-                    System.out.println(newObject);
+                    bins = newObject.getString("bin");
+                    System.out.println("shouldnt be from here"+ newObject);
 
                     Intent intent = new Intent(SpeechTakeActivity.this, TakeSuccess.class);
+                    System.out.println(theItem);
+                    intent.putExtra("object",theItem);
+                    intent.putExtra("bins", bins);
                     startActivity(intent);
 
                 }catch (Exception e){
@@ -136,8 +143,15 @@ public class SpeechTakeActivity extends AppCompatActivity {
                 try {
 
                     JSONObject newObject = existingObject.getJSONObject(result.get(0));
+                    bins = newObject.getString("bin");
                     System.out.println(newObject);
                     System.out.println("Works");
+
+                    Intent intent = new Intent(SpeechTakeActivity.this, TakeSuccess.class);
+                    System.out.println(theItem);
+                    intent.putExtra("object", theItem);
+                    intent.putExtra("bins", bins);
+                    startActivity(intent);
                 } catch (Exception e) {
                     System.out.println("no");
                     Intent notHere = new Intent(SpeechTakeActivity.this, TakeFailure.class);
