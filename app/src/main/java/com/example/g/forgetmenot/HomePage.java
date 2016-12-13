@@ -199,7 +199,17 @@ public class HomePage extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     dialog.dismiss();
+                    System.out.println("that");
                     PutIntent(v);
+                }
+            });
+
+            Button dialogButton2 = (Button) dialog.findViewById(R.id.btn_dialog2);
+            dialogButton2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.dismiss();
+
                 }
             });
 
@@ -228,7 +238,15 @@ public class HomePage extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     dialog.dismiss();
+                    System.out.println("this");
                     TakeIntent(v);
+                }
+            });
+            Button dialogButton2 = (Button) dialog.findViewById(R.id.btn_dialog2);
+            dialogButton2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.dismiss();
                 }
             });
 
