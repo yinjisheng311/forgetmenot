@@ -1,5 +1,6 @@
 package com.example.g.forgetmenot;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
@@ -41,6 +42,9 @@ public class HomePage extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
         final Animation animZoomOut = AnimationUtils.loadAnimation(this, R.anim.zoom_out);
@@ -87,14 +91,14 @@ public class HomePage extends AppCompatActivity {
         switch (item.getItemId()) {
             // action with ID action_image was selected
             case R.id.action_settings:
-                Toast.makeText(this, "Settings", Toast.LENGTH_SHORT)
-                        .show();
+                Intent goScore = new Intent(this, ScoreActivity.class);
+                startActivity(goScore);
                 break;
 
             //action with ID action_settings_two was selected
             case R.id.action_logout:
-                Toast.makeText(this, "Log Out", Toast.LENGTH_SHORT)
-                        .show();
+                Intent goLogin = new Intent(this, Login.class);
+                startActivity(goLogin);
                 break;
             default:
                 break;

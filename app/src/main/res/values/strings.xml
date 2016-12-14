@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ForgetMeNot</string>
+    <string name="app_name"></string>
     <string name="speechToText"> </string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
@@ -32,13 +32,13 @@
     </string-array>
 
     <string-array name="item_names">
-    <item>Plane</item>
-    <item>Cloud</item>
-    <item>Flower</item>
+        <item>Plane</item>
+        <item>Cloud</item>
+        <item>Flower</item>
     </string-array>
     <string-array name="times">
-    <item>10h</item>
-    <item>20h</item>
-    <item>30h</item>
+        <item>10h</item>
+        <item>20h</item>
+        <item>30h</item>
     </string-array>
 </resources>
