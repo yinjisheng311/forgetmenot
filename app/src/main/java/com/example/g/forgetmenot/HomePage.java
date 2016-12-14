@@ -39,6 +39,7 @@ public class HomePage extends AppCompatActivity {
     ImageView whiteshelfHere;
     Typeface tf1;
     String valueOfWeight;
+    String whatItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -265,6 +266,56 @@ public class HomePage extends AppCompatActivity {
         }
 
     }
+    public void GoToTakeSuccess(View v){
+        Intent takeSuccessIntent = new Intent(this, TakenOutSuccess.class);
+        startActivity(takeSuccessIntent);
+    }
+
+
+    public class ShowRemoveKnownPromptViewDialog {
+
+        public void showDialog(Activity activity, String msg) {
+            final Dialog dialog = new Dialog(activity);
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            dialog.setCancelable(false);
+            dialog.setContentView(R.layout.nice_dialog);
+
+            TextView text = (TextView) dialog.findViewById(R.id.text_dialog);
+            tf1 = Typeface.createFromAsset(getAssets(), "fonts/JosefinSans-Regular.ttf");
+            text.setTypeface(tf1);
+
+
+            text.setText(msg);
+
+            Button dialogButton = (Button) dialog.findViewById(R.id.btn_dialog);
+            dialogButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.dismiss();
+                    System.out.println("this");
+                    RequestParams nothing = new RequestParams();
+                    changeBackValue(nothing);
+                    System.out.println(whatItem);
+                    RequestParams whatIsTheItem = new RequestParams();
+                    deleteObject(whatIsTheItem,whatItem,0);
+                    GoToTakeSuccess(v);
+
+                }
+            });
+            Button dialogButton2 = (Button) dialog.findViewById(R.id.btn_dialog2);
+            dialogButton2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.dismiss();
+                }
+            });
+
+            dialog.show();
+
+        }
+
+    }
+
     public void checkWeightValue(RequestParams item2, int bin){
         SpeechActivityClient.checkWeight("api/system/active", item2, new JsonHttpResponseHandler(){
             @Override
@@ -275,19 +326,28 @@ public class HomePage extends AppCompatActivity {
                 try{
                     JSONObject newObject = existingArray.getJSONObject(0);
                     String valueOfWeight= newObject.getString("change");
-                    String whatItem = newObject.getString("item");
+                    whatItem = newObject.getString("item");
                     System.out.println("JSON " +valueOfWeight);
-                    if (valueOfWeight.equals("-1") ){ //weight -1 && item is there -> item is taken out and know which one is taken out, ask them to confirm
-                        ShowRemovePromptViewDialog alert = new ShowRemovePromptViewDialog();
-                        alert.showDialog(HomePage.this, "You took out something, what is it?");
+                    if (valueOfWeight.equals("-1") && whatItem.equals(null)){ //weight -1 && item is there -> item is taken out and know which one is taken out, ask them to confirm
+                            ShowRemovePromptViewDialog alert = new ShowRemovePromptViewDialog();
+                            alert.showDialog(HomePage.this, "You took out something, what is it?");
 
                         //valueOfWeight.replace("-1", "0");
-                    }else if (valueOfWeight.equals("1")){
+                    }else if (valueOfWeight.equals("1")) {
                         valueOfWeight.replace("1", "0");
 
                         ShowAddPromptViewDialog addPromptAlert = new ShowAddPromptViewDialog();
 
                         addPromptAlert.showDialog(HomePage.this, "You added something, please tell us what it is");
+                        System.out.println(valueOfWeight);
+
+                    }else if (valueOfWeight.equals("-1")){
+                        valueOfWeight.replace("1", "0");
+
+                        ShowRemoveKnownPromptViewDialog addPromptAlert = new ShowRemoveKnownPromptViewDialog();
+
+                        addPromptAlert.showDialog(HomePage.this, "You removed " + whatItem + " ?");
+
                         System.out.println(valueOfWeight);
                     }else{
                         System.out.println("nothing happened");
@@ -373,6 +433,52 @@ public class HomePage extends AppCompatActivity {
 
         // else
         //nothing happens
+    }
+    public void deleteObject(RequestParams item2, String item, int bin) {
+        SpeechActivityClient.delete("api/item/delete?item=" + item, item2, new JsonHttpResponseHandler() {
+            @Override
+            public void onStart() {
+
+            }
+            public void onSuccess(int statusCode, Header[] headers, JSONArray existingArray) {
+                try{
+                    JSONObject newObject = existingArray.getJSONObject(0);
+                    System.out.println(newObject);
+
+
+                    //Intent intent = new Intent(TakeSuccess.this, TakenOutSuccess.class);
+                    //startActivity(intent);
+
+                }catch (Exception e){
+                    System.out.println("Not Deleted");
+
+                }
+            }
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject existingObject) {
+                try {
+                    //JSONObject newObject = existingObject.getJSONObject(0);
+                    System.out.println("Deleted");
+
+                    //Intent intent = new Intent(TakeSuccess.this, TakenOutSuccess.class);
+                    //startActivity(intent);
+                } catch (Exception e) {
+                    System.out.println("Failed to be deleted");
+                }
+
+            }
+
+            public void onRetry(int retryNo) {
+
+            }
+
+            public void onFailure(int x, Header[] y, String z, Throwable l) {
+                System.out.println(z);
+            }
+
+        });
+
     }
 
 
