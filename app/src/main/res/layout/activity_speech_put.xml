@@ -39,5 +39,18 @@
         android:layout_below="@+id/putText"
         android:layout_centerHorizontal="true" />
 
+    <TextView
+        android:text="PUT"
+        android:gravity="center"
+        android:textColor="@color/colorBlack"
+        android:textSize="70dp"
+        android:background="@drawable/yellow_button"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="39dp"
+        android:id="@+id/putTV"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
 
 </RelativeLayout>

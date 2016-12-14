@@ -24,7 +24,7 @@
         android:background="@color/colorLogoBlue"
         app:titleTextColor="@color/colorWhite"
         android:title=""
-        android:elevation="4dp"
+        android:elevation="0dp"
         android:theme="@style/Your.Theme"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 

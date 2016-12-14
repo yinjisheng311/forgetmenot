@@ -22,6 +22,7 @@
     <style name="OverFlow" parent="@android:style/Widget.Holo.ActionButton.Overflow">
         <item name="android:titleTextStyle">@style/NoTitleText</item>
         <item name="android:src">@drawable/user_actionbar2</item>
+
     </style>
     <style name="NoTitleText">
         <item name="android:textSize">0sp</item>

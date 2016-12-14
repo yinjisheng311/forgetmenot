@@ -274,9 +274,14 @@ public class HomePage extends AppCompatActivity {
                     if (valueOfWeight.equals("-1")){ //weight -1 && item is there -> item is taken out and know which one is taken out, ask them to confirm
                         ShowRemovePromptViewDialog alert = new ShowRemovePromptViewDialog();
                         alert.showDialog(HomePage.this, "You took out something, what is it?");
+                        valueOfWeight.replace("-1", "0");
                     }else if (valueOfWeight.equals("1")){
+                        valueOfWeight.replace("1", "0");
+
                         ShowAddPromptViewDialog addPromptAlert = new ShowAddPromptViewDialog();
+
                         addPromptAlert.showDialog(HomePage.this, "You added something, please tell us what it is");
+                        System.out.println(valueOfWeight);
                     }else{
                         System.out.println("nothing happened");
                     }

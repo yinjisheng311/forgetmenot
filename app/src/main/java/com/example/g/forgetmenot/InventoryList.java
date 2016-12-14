@@ -25,7 +25,7 @@ import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
 
-class InventoryList extends AppCompatActivity{
+public class InventoryList extends AppCompatActivity{
 
 
     private ArrayList<String> arrayList;

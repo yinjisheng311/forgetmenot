@@ -20,39 +20,54 @@
         android:layout_alignParentStart="true">
 
         <TextView
-            android:text="How well are you doing?"
+            android:text="How forgetful are you?"
+            android:textColor="@color/colorBlack"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textView2"
-            android:textSize="40dp"
+            android:id="@+id/howWell"
+            android:textSize="60dp"
             android:layout_marginTop="30dp"/>
 
         <TextView
             android:text="Your score for today:"
+            android:textColor="@color/colorBlack"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textView3"
+            android:id="@+id/scoreMessage"
             android:layout_gravity="center"
-            android:textSize="40dp"
+            android:textSize="50dp"
             android:layout_marginTop="30dp"/>
 
         <TextView
-            android:text="TextView"
+            android:text=""
+            android:textSize="40dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/displayscore" />
+            android:id="@+id/displayscore"
+            android:layout_marginTop="10dp"/>
 
         <TextView
-            android:text="TextView"
+            android:text=""
+            android:textSize="40dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/message" />
+            android:id="@+id/message"
+            android:layout_marginTop="10dp"/>
 
         <Button
-            android:text="Button"
+            android:text="Check my Status"
+            android:textSize="40dp"
+            android:background="@drawable/special_button"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/button" />
+            android:layout_height="100dp"
+            android:id="@+id/button"
+            android:layout_marginTop="30dp"/>
+
+        <com.jjoe64.graphview.GraphView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/graph"
+            android:layout_marginTop="0dp"/>
 
 
     </LinearLayout>

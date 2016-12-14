@@ -22,7 +22,7 @@ import cz.msebera.android.httpclient.Header;
 
 public class SpeechPutActivity extends AppCompatActivity {
     //private TextView txtSpeechInput;
-    TextView txtSpeechInput;
+    TextView txtSpeechInput, putTextView;
     Typeface tf1;
     private ImageButton btnSpeak;
     private final int REQ_CODE_SPEECH_INPUT = 100;
@@ -35,10 +35,12 @@ public class SpeechPutActivity extends AppCompatActivity {
 
         txtSpeechInput = (TextView) findViewById(R.id.putText);
         btnSpeak = (ImageButton) findViewById(R.id.btnSpeak);
+        putTextView = (TextView)findViewById(R.id.putTV);
 
         tf1 = Typeface.createFromAsset(getAssets(), "fonts/JosefinSans-Regular.ttf");
 
         txtSpeechInput.setTypeface(tf1);
+        putTextView.setTypeface(tf1);
 
         btnSpeak.setOnClickListener(new View.OnClickListener() {
             @Override
