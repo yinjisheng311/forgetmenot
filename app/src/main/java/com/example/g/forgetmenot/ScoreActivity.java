@@ -14,6 +14,8 @@ import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Random;
 
 public class ScoreActivity extends AppCompatActivity {
@@ -43,14 +45,9 @@ public class ScoreActivity extends AppCompatActivity {
         Button b = (Button) findViewById(R.id.button);
         tograph = new ArrayList<>();
         GraphView graph = (GraphView) findViewById(R.id.graph);
-        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[] {
-                new DataPoint(0, 1),
-                new DataPoint(1, 5),
-                new DataPoint(2, 3),
-                new DataPoint(3, 2),
-                new DataPoint(4, 6)
-        });
+        final LineGraphSeries<DataPoint> series = new LineGraphSeries<>(createGraph());
         graph.addSeries(series);
+        series.setTitle("Your Progress");
         b.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Perform action on click
@@ -69,8 +66,33 @@ public class ScoreActivity extends AppCompatActivity {
                 else{
                     message.setText("Congratulations! Your memory is amazing now.");
                 }
+
             }
         });
+        Button b2 = (Button) findViewById(R.id.button2);
+        b2.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                series.resetData(createGraph()); //to put the points into the graph
+                    tograph.clear(); //reset the points
+
+            }
+        });
+
+
+    }
+    private DataPoint[] createGraph(){
+        DataPoint[] a = new DataPoint[tograph.size()];
+        Calendar calendar = Calendar.getInstance();
+        Date d1 = calendar.getTime();
+        for (int i=0;i<tograph.size();i++){
+            double x = d1.getTime();
+            double y = tograph.get(i);
+            DataPoint v = new DataPoint(x,y);
+            calendar.add(Calendar.DATE, 1);
+            a[i] = v;
+        }
+        return a;
+
 
     }
 
