@@ -204,6 +204,10 @@ public class HomePage extends AppCompatActivity {
                 public void onClick(View v) {
                     dialog.dismiss();
                     System.out.println("that");
+
+                    RequestParams nothing = new RequestParams();
+                    changeBackValue(nothing);
+
                     PutIntent(v);
                 }
             });
@@ -243,6 +247,8 @@ public class HomePage extends AppCompatActivity {
                 public void onClick(View v) {
                     dialog.dismiss();
                     System.out.println("this");
+                    RequestParams nothing = new RequestParams();
+                    changeBackValue(nothing);
                     TakeIntent(v);
                 }
             });
@@ -271,10 +277,11 @@ public class HomePage extends AppCompatActivity {
                     String valueOfWeight= newObject.getString("change");
                     String whatItem = newObject.getString("item");
                     System.out.println("JSON " +valueOfWeight);
-                    if (valueOfWeight.equals("-1")){ //weight -1 && item is there -> item is taken out and know which one is taken out, ask them to confirm
+                    if (valueOfWeight.equals("-1") ){ //weight -1 && item is there -> item is taken out and know which one is taken out, ask them to confirm
                         ShowRemovePromptViewDialog alert = new ShowRemovePromptViewDialog();
                         alert.showDialog(HomePage.this, "You took out something, what is it?");
-                        valueOfWeight.replace("-1", "0");
+
+                        //valueOfWeight.replace("-1", "0");
                     }else if (valueOfWeight.equals("1")){
                         valueOfWeight.replace("1", "0");
 
@@ -287,6 +294,36 @@ public class HomePage extends AppCompatActivity {
                     }
                 } catch (Exception e) {
                     System.out.println("cant detect weight change");
+                }
+            }
+            public void onSuccess(int statusCode, Header[] headers, JSONObject existingObject){
+                try{
+                    System.out.println("shouldnt be here");
+                    System.out.println(valueOfWeight);
+                }catch (Exception e){
+                    System.out.println("nope cannot at all");
+                }
+            }
+            public void onRetry(int retryNo){
+
+            }
+            public void onFailure(int x, Header[] y, String z, Throwable l){
+                System.out.println(z);
+            }
+        });
+    }
+    public void changeBackValue(RequestParams item2){
+        SpeechActivityClient.checkWeight("api/system/null",item2, new JsonHttpResponseHandler(){
+            @Override
+            public void onStart(){
+
+            }
+            public void onSuccess(int statusCode, Header[] headers, JSONArray existingArray){
+                try{
+                    System.out.println("weight value is changed back");
+
+                } catch (Exception e) {
+                    System.out.println("cant change weight");
                 }
             }
             public void onSuccess(int statusCode, Header[] headers, JSONObject existingObject){
