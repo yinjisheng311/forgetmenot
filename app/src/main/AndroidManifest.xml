@@ -58,8 +58,10 @@
         <activity
             android:name=".TakenOutSuccess"
             android:screenOrientation="portrait" />
-        <activity android:name=".ScoreActivity"
-            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".ScoreActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".ScoreAgain2"></activity>
     </application>
 
 </manifest>

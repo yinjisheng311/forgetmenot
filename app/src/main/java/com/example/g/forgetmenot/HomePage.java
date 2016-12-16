@@ -92,7 +92,7 @@ public class HomePage extends AppCompatActivity {
         switch (item.getItemId()) {
             // action with ID action_image was selected
             case R.id.action_settings:
-                Intent goScore = new Intent(this, ScoreActivity.class);
+                Intent goScore = new Intent(this, ScoreAgain2.class);
                 startActivity(goScore);
                 break;
 
